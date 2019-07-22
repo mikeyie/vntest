@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="landing" class="landing_bg">
+            <div class="landingContents" id="landingContent">
+                <span style="font-weight: bold; font-size: 60px; color: #1b1166; text-decoration: underline;">&#9733;VN Star Test</span>
+                <div style="text-align: left">
+                    <br><br>
+                    Welcome to the VN Star Test. This short adaptive quiz determines which Viet Ngu class you will be placed in. Answer the questions to the best of your abilities.
+                    <br><br>
+                    When you are ready to begin, please type in your first and last name. Then press start. Good luck!
+                    <br><br>
+                </div>
+                <form autocomplete="off">
+                    <input id="firstName" placeholder="First Name" onkeyup="checkStart()">
+                    <input id="lastName" placeholder="Last Name" onkeyup="checkStart()">
+                </form>
+                <br>
+                <span class="grey_start" id="startButton">Start</span>
+            </div>
+        </div>
+        <div id="popup">
+            <div id="popupContents">Great Job! You've moved on to the next grade.</div>
+        </div>
+        
+        <div class="info_bar">
+            <div class="name" id="label"><b>&#9733;VN Star Test</b> | Hung-Tam Yie</div>
+            <div class="time" id="time">1:00</div>
+        </div>
+        <div class="level_bar" id="levelDisplay">Grade 1</div>
+        
+        <div class="column_left">
+            <div class="question_number" id="questionNumber">Question #1</div>
+            <div class="question_text" id="question">
+            </div>
+            <table class="answers">
+                <tr>
+                    <td id="answer0"></td>
+                    <td id="answer1"></td>
+                </tr>
+                <tr>
+                    <td id="answer2"></td>
+                    <td id="answer3"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="divider"></div>
+        <div class="column_right" id="rightBar">
+            <img id="image" class="image" src="./images/taylor.jpg"></img>
+            <div class="additional_text" id="additionalText"></div>
+        </div>
+        <script src="script.js"></script>
+        <script src="questions.js"></script>
+    </body>
+</html>

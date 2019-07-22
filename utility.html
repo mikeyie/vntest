@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>UTILITY</title>
+        <style>
+            textarea {
+                width: 500px;
+                height: 50px;
+            }
+            
+             #output {
+                width: 500px;
+                height: 600px;
+             }
+        </style>
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <h1>VN Star Test Generator</h1>
+                    <button onclick="prevGrade()">Previous Grade</button>
+                    <span id="currentGrade">Grade: 1/1</span>
+                    <button onclick="nextGrade()">Next Grade</button>
+                    <br><br>
+                    <button onclick="prevQuestion()">Previous Question</button>
+                    <span id="currentQuestion">Question: 1/1</span>
+                    <button onclick="nextQuestion()">Next Question</button>
+                    <br><br>
+                    <button onclick="deleteQuestion()">Delete Current Question</button>
+                    <button  onclick="deleteGrade()">Delete Current Grade</button>
+                    <br><br>
+                    <span>Write the Question: </span><textarea id="q" placeholder="Who was Neil Armstrong??"></textarea>
+                    <br><br>
+                    <span>Correct Answer: </span><textarea id="a1" placeholder="Neil Armstrong was the first man to walk on the moon."></textarea>
+                    <br><br>
+                    <span>Wrong Answer: </span><textarea id="a2" placeholder="Neil Armstrong was a famous Russian."></textarea>
+                    <br><br>
+                    <span>Wrong Answer: </span><textarea id="a3" placeholder="Neil Armstrong was a singer."></textarea>
+                    <br><br>
+                    <span>Wrong Answer: </span><textarea id="a4" placeholder="Neil Armstrong was the first man to enter the Marina Trench."></textarea>
+                    <br><br>
+                    <span>Additional info: </span><textarea id="m" placeholder="Place text excerpts or other long pieces of writing here"></textarea>
+                    <br><br>
+                    <span>Image Name: </span><textarea id="i" placeholder="astronautExample.png"></textarea>
+                </td>
+                <td>
+                    <textarea id="output"></textarea>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <div>Upload a saved test?</div>
+        <textarea id="uploadText"></textarea>
+        <br>
+        <button onclick="upload()">Upload</upload>
+        
+        <script>
+            var mainArray = [[["", "", "", "", "", "", ""]]];
+            
+            var grade = 0;
+            var question = 0;
+            function prevGrade(){
+                question = 0;
+                if(grade > 0){
+                    grade--;
+                    populateElems();
+                    elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    //alert("You're already on Grade 1")
+                }
+            }
+            
+            function nextGrade(){
+                question = 0;
+                if(grade < mainArray.length - 1){
+                    grade++;
+                    populateElems();
+                    elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    clearElems();
+                    mainArray.push([["", "", "", "", "", "", ""]]);
+                    grade++;
+                    elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                    //alert("New grade created");
+                }
+            }
+            
+            function nextQuestion(){
+                if(question < mainArray[grade].length - 1){
+                    question++;
+                    populateElems();
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    clearElems();
+                    question++;
+                    mainArray[grade].push(["", "", "", "", "", "", ""]);
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+            }
+            
+            function prevQuestion(){
+                if(question > 0){
+                    question--;
+                    populateElems();
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    //alert("You're already on question 1")
+                }
+            }
+            
+            function deleteQuestion(){
+                if(question > 0){
+                    question--;
+                    populateElems();
+                    mainArray[grade].splice(question + 1, 1);
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    if(mainArray[grade].length > 1){
+                        question++;
+                        populateElems();
+                        mainArray[grade].splice(question - 1, 1);
+                        question = 0;
+                        elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                    }
+                }
+            }
+            
+            function deleteGrade(){
+                question = 0;
+                if(grade > 0 && prompt("Type 'yes' if you really want to delete this grade") == "yes"){
+                    grade--;
+                    populateElems();
+                    mainArray.splice(grade + 1, 1);
+                    elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+                else {
+                    if(mainArray.length > 1 && prompt("Type 'yes' if you really want to delete this grade") == "yes"){
+                        grade++;
+                        populateElems();
+                        mainArray.splice(grade - 1, 1);
+                        grade = 0;
+                        elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                        elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                    }
+                }
+            }
+            
+            function upload(){
+                if(prompt("Type 'yes' to upload. Your current quiz will not be saved.") == "yes"){
+                    question = 0;
+                    grade = 0;
+                    mainArray = JSON.parse(elem("uploadText").value);
+                    populateElems();
+                    elem("currentGrade").innerHTML = "Grade: " + (grade + 1) + "/" + mainArray.length;
+                    elem("currentQuestion").innerHTML = "Question: " + (question + 1) + "/" + mainArray[grade].length;
+                }
+            }
+            
+            function clearElems(){
+                elem("q").value = "";
+                elem("a1").value = "";
+                elem("a2").value = "";
+                elem("a3").value = "";
+                elem("a4").value = "";
+                elem("m").value = "";
+                elem("i").value = "";
+            }
+            
+            function populateElems(){
+                elem("q").value = mainArray[grade][question][0];
+                elem("a1").value = mainArray[grade][question][1];
+                elem("a2").value = mainArray[grade][question][2];
+                elem("a3").value = mainArray[grade][question][3];
+                elem("a4").value = mainArray[grade][question][4];
+                elem("m").value = mainArray[grade][question][5];
+                elem("i").value = mainArray[grade][question][6];
+            }
+            
+            
+            function tick(){
+                mainArray[grade][question][0] = elem("q").value;
+                mainArray[grade][question][1] = elem("a1").value;
+                mainArray[grade][question][2] = elem("a2").value;
+                mainArray[grade][question][3] = elem("a3").value;
+                mainArray[grade][question][4] = elem("a4").value;
+                mainArray[grade][question][5] = elem("m").value;
+                mainArray[grade][question][6] = elem("i").value;
+                elem('output').value = JSON.stringify(mainArray);
+                
+                window.requestAnimationFrame(tick);
+            }
+            tick();
+            
+            function elem(e){
+                return document.getElementById(e);
+            }
+        </script>
+    </body>
+</html>
