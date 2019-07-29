@@ -7,8 +7,8 @@ After 10 questions if they fall below a 40% they get placed in the grade
 UI
 Time shows up on top bar
 Level shows up on top left
-
 */
+
 var name = "FirstNAME";
 var lastName = "LastNAME";
 var level = 0;
