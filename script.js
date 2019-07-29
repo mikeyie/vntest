@@ -56,9 +56,9 @@ function startClicked(){
         lastName = elem('lastName').value;
         elem("landing").style.opacity = "0";
         elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " " + lastName;
-        window.setTimeout(function(){
-            document.getElementById("landing").style.pointerEvents = "none";
-        },400)
+        window.setTimeout(function() {
+          document.getElementById("landing").style.pointerEvents = "none";
+        }, 400)
     }
 }
 
@@ -138,6 +138,24 @@ function answerSelected(num){
 }
 
 function nextLevel(){
+    // Save Test information to lcoal storage before moving to
+    // the next level.
+    if (!localStorage.testResults) {
+        localStorage.testResults = '[]';
+    }
+    var testResultsJSON = JSON.parse(localStorage.testResults);
+    var testResults = {
+        firstName: name,
+        lastName: lastName,
+        level: level,
+        questionsCorrect: questionsCorrect,
+        questionsWrong: questionsWrong,
+        questionsTotal: questionsTotal,
+        dateTimeStamp: (new Date()).toLocaleString()
+    }
+    testResultsJSON.push(testResults);
+    localStorage.testResults = JSON.stringify(testResultsJSON);
+
     level++;
     questionsCorrect = 0;
     questionsWrong = 0;
