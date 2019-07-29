@@ -99,7 +99,11 @@ function nextQuestion(){
     if(!currentQuestion[5] && !currentQuestion[6]){
         elem("image").style.height = "30vh";
         elem("additionalText").innerHTML = placeholderText;
-        elem("image").src = "./images/" + placeholderImage;
+        if (placeholderImage) {
+            elem("image").src = "./images/" + placeholderImage;
+        } else {
+            elem("image").src = "";
+        }
     }
     
     for(var i = 0; i < 4; i++){
