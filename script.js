@@ -121,6 +121,8 @@ function answerSelected(num){
         
         if (answeredCorrectly) {
             questionsCorrect += 1;
+        } else {
+            questionsWrong +=1;
         }
         questionsTotal += 1;
         
@@ -181,6 +183,7 @@ function nextLevel(){
 
     // Next Level and reset the questionsCorrect/Wrong/Total.
     level++;
+    questionCount = 0;
     questionsCorrect = 0;
     questionsWrong = 0;
     questionsTotal = 0;

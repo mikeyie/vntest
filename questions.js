@@ -238,7 +238,7 @@ var QUESTIONS =
          "Level2/tea.jpg"
       ],
       [
-         "Chọn chữ có dấu huyền \\  (Select the word that has dấu huyền \\)",
+         "Chọn chữ có dấu huyền \\  \n\n(Select the word that has dấu huyền \\)",
          "[[Level2/oldlady.jpg]]",
          "[[Level2/fish.jpg]]",
          "[[Level2/number3.jpg]]",
@@ -247,16 +247,16 @@ var QUESTIONS =
          ""
       ],
       [
-         "Chọn chữ có dấu sắc / (Select the word that has dấu sắc /)",
+         "Chọn chữ có dấu sắc / \n\n(Select the word that has dấu sắc /)",
          "[[Level2/leaf.jpg]]",
          "[[Level2/rooster.jpg]]",
-         "[[Level2/pho.jpg]]",
+         "[[Level2/nose.jpg]]",
          "[[Level2/crab.jpg]]",
          "",
          ""
       ],
       [
-         "Chọn chữ có dấu nặng .  (Select the word that has dấu nặng .)",
+         "Chọn chữ có dấu nặng .  \n\n(Select the word that has dấu nặng .)",
          "[[Level2/mother.jpg]]",
          "[[Level2/car.jpeg]]",
          "[[Level2/totear.jpg]]",
@@ -265,7 +265,7 @@ var QUESTIONS =
          ""
       ],
       [
-         "Chọn chữ có dấu ngã ~  (Select the word that has dấu ngã ~)",
+         "Chọn chữ có dấu ngã ~  \n\n(Select the word that has dấu ngã ~)",
          "[[Level2/todraw.jpg]]",
          "[[Level2/tickets.jpg]]",
          "[[Level2/pen.jpg]]",
