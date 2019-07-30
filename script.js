@@ -12,6 +12,7 @@ Level shows up on top left
 var name = "FirstNAME";
 var lastName = "LastNAME";
 var level = 0;
+var totalLevels = 0;
 var questions;
 var questionCount = 0;
 var questionsCorrect = 0;
@@ -24,6 +25,7 @@ var buttons = [];
 
 function startup(){
     questions = JSON.parse(JSON.stringify(QUESTIONS));
+    totalLevels = questions.length;
     for(var i = 0; i < 4; i++){
         buttons.push(document.getElementById("answer" + i));
         var num = i;
@@ -166,7 +168,7 @@ function saveResultsToLocalStorage() {
         questionsCorrect: questionsCorrect,
         questionsWrong: questionsWrong,
         questionsTotal: questionsTotal,
-        percentage: currentPercentage,
+        percentage: ((currentPercentage * 100) + '%'),
         passed: ((currentPercentage >= percentToPass) ? 'Yes': 'No'),
         dateTimeStamp: (new Date()).toLocaleString()
     }
