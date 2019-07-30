@@ -503,7 +503,7 @@ var QUESTIONS =
    ],
    [
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "ông bà ngoại",
          "ong bà ngoại",
          "ông bà ngại",
@@ -512,7 +512,7 @@ var QUESTIONS =
          "Level4/grandparents.jpg"
       ],
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "Bé giúp mẹ tưới cây.",
          "Bé dúp mẹ tưới cây.",
          "Bé giúp mẹ túi cây.",
@@ -521,7 +521,7 @@ var QUESTIONS =
          "Level4/waterplants.jpg"
       ],
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "Con thương mẹ nhiều.",
          "Con thưong mẹ nhiều.",
          "Con thương mẹ nghiều.",
@@ -530,7 +530,7 @@ var QUESTIONS =
          "Level4/ilovemymom.jpg"
       ],
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "Em mơ ước được lên cung trăng.",
          "Em mơ ước dược lên cung trăng.",
          "Em mô ước đươc lên cung trăng.",
@@ -539,7 +539,7 @@ var QUESTIONS =
          "Level4/daydream.jpg"
       ],
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "Chị Xuân uống nước.",
          "Chị Xuân uóng nước.",
          "Chị Xuân óng nước.",
@@ -548,7 +548,7 @@ var QUESTIONS =
          "Level4/ladydrinkingwater.jpg"
       ],
       [
-         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
+         "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.\n\n(Pick the answer choice with all the correct spellings)",
          "Mẹ làm tiệc sinh nhật cho Uyên ở biển.",
          "Mẹ làm tiêc sinh nhật cho Uyen ở biển.",
          "Mẹ làm tiệc sinh nhat cho Uyen ở biển.",
