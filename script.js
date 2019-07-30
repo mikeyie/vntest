@@ -17,6 +17,7 @@ var questionCount = 0;
 var questionsCorrect = 0;
 var questionsWrong = 0;
 var questionsTotal = 0;
+var percentToPass = 0.8;
 var canClick = true;
 
 var buttons = [];
@@ -111,29 +112,36 @@ function nextQuestion(){
     }
 }
 
-
-var percentToPass = 1;
 function answerSelected(num){
-    if(canClick){
+    if (canClick) {
         canClick = false;
         var answeredCorrectly = num == correctAnswerIndex;
         var questionsLeft = questions[level].length;
+        console.log('answeredCorrectly = ' + answeredCorrectly);
         
-        if(true){
+        if (answeredCorrectly) {
             questionsCorrect += 1;
         }
         questionsTotal += 1;
         
-        var theoreticalPositivePercentage = questionsCorrect / (questionsLeft + questionsTotal);
-        var theoreticalNegativePercentage = (questionsCorrect + questionsLeft) / (questionsLeft + questionsTotal);
+        //var theoreticalPositivePercentage = questionsCorrect / (questionsLeft + questionsTotal);
+        //var theoreticalNegativePercentage = (questionsCorrect + questionsLeft) / (questionsLeft + questionsTotal);
         
-        console.log(theoreticalPositivePercentage);
+        //console.log(theoreticalPositivePercentage);
         
-        if(theoreticalPositivePercentage >= percentToPass){
-            nextLevel();
-        }
-        else if(theoreticalNegativePercentage < percentToPass || questions[level].length == 0){
-            animateFinished();
+        // if(theoreticalPositivePercentage >= percentToPass){
+        //     nextLevel();
+        // }
+        //else if(theoreticalNegativePercentage < percentToPass || questions[level].length == 0){
+        if (questions[level].length == 0) {
+            var currentPercentage = getCurrentPercentage();
+            console.log('currentPercentage = ' + currentPercentage);
+            console.log('percentToPass = ' + percentToPass);
+            if (currentPercentage >= percentToPass) {
+                nextLevel();
+            } else {
+                animateFinished();
+            }
         }
         else {
             animateNextQuestion();
@@ -141,12 +149,13 @@ function answerSelected(num){
     }
 }
 
-function nextLevel(){
-    // Save Test information to lcoal storage before moving to
-    // the next level.
+function saveResultsToLocalStorage() {
+    console.log('Setting Local Storage...');
     if (!localStorage.testResults) {
         localStorage.testResults = '[]';
     }
+
+    var currentPercentage = getCurrentPercentage();
     var testResultsJSON = JSON.parse(localStorage.testResults);
     var testResults = {
         firstName: name,
@@ -155,11 +164,22 @@ function nextLevel(){
         questionsCorrect: questionsCorrect,
         questionsWrong: questionsWrong,
         questionsTotal: questionsTotal,
+        percentage: currentPercentage,
+        passed: ((currentPercentage >= percentToPass) ? 'Yes': 'No'),
         dateTimeStamp: (new Date()).toLocaleString()
     }
     testResultsJSON.push(testResults);
     localStorage.testResults = JSON.stringify(testResultsJSON);
+    console.log('Setting Local Storage...DONE!!');
 
+}
+
+function nextLevel(){
+    // Save Test information to lcoal storage before moving to
+    // the next level.
+    saveResultsToLocalStorage();
+
+    // Next Level and reset the questionsCorrect/Wrong/Total.
     level++;
     questionsCorrect = 0;
     questionsWrong = 0;
@@ -187,6 +207,8 @@ function animateNextQuestion(){
 }
 
 function animateFinished(){
+    saveResultsToLocalStorage();
+
     canClick = false;
     document.getElementById("popup").style.pointerEvents = "auto";
     elem("popup").style.visibility = "visible";
@@ -212,7 +234,7 @@ function animateCongrats(){
     }, 2500);
 }
 
-function currentPercentage(){
+function getCurrentPercentage(){
     return questionsCorrect/questionsTotal;
 }
 
