@@ -280,7 +280,7 @@ var QUESTIONS =
          "Co",
          "Cố",
          "",
-         ""
+         "Level2/ladyshopping.jpg",
       ],
       [
          "Chọn chữ thích hợp để điền vào chỗ trống (Choose the correct word to fill in the blank)<br><br>Chú ___ cô quà to.",
@@ -328,7 +328,7 @@ var QUESTIONS =
          ""
       ],
       [
-         "Đọc câu chuyện rồi trả lời các câu hỏi dưới đây (Read the story and answer the questions)\n\nWhat did Uncle Kha give Phi's grandma?",
+         "Đọc câu chuyện rồi trả lời các câu hỏi dưới đây (Read the story on the right and answer the questions)\n\nWhat did Uncle Kha give Phi's grandma?",
          "a basket of pears",
          "coffee",
          "a leather wallet",
@@ -394,10 +394,10 @@ var QUESTIONS =
       ],
       [
          "Chọn những từ ngữ đúng chính tả (Pick the answer choice with all the correct spellings)",
-         "con cua, cái cửa",
-         "con cưa, cái cửa",
-         "con cua, cái của",
-         "con cưa, cái của",
+         "cái cửa, con cua",
+         "cái cửa, con cưa",
+         "cái của, con cua",
+         "cái của, con cưa",
          "",
          "Level3/Crab_Door.jpg"
       ],
@@ -474,7 +474,7 @@ var QUESTIONS =
          "Level3/TieHair_PeelOrange.jpg"
       ],
       [
-         "Bài này nói về cái gì?",
+         "Đọc câu chuyện rồi trả lời các câu hỏi dưới đây (Read the story on the right and answer the questions)\n\nBài này nói về cái gì?",
          "Cô chú dẫn em và bé Nam đi sở thú.",
          "Ba mẹ dẫn em và bé Nam đi sở thú.",
          "Cô chú dẫn em và bé Nam đi chợ.",
@@ -527,7 +527,7 @@ var QUESTIONS =
          "Con thương mẹ nghiều.",
          "Con thượng mẹ nhiều.",
          "",
-         "Level4/ilovemymom.jp2"
+         "Level4/ilovemymom.jpg"
       ],
       [
          "Chọn câu thích hợp với hình vẽ và viết đúng chính tả.",
@@ -557,7 +557,7 @@ var QUESTIONS =
          "Level4/beachbday.jpg"
       ],
       [
-         "Bé Na ao ước được gì?",
+         "Đọc câu chuyện rồi trả lời các câu hỏi dưới đây (Read the story on the right and answer the questions)\n\nBé Na ao ước được gì?",
          "Bé Na ao ước được một chú chó nhỏ để nuôi.",
          "Bé Na ao ước được chơi với chú chó Lucky.",
          "Bé Na ao ước có được thật nhiều quà.",
