@@ -31,6 +31,7 @@ function startup(){
         var num = i;
         addEventListener(num);
     }
+    elem("levelDisplay").innerHTML = "Grade " + (level + 1);
     elem("startButton").addEventListener("mousedown", startClicked, false);
     stopWatch();
     nextQuestion();
@@ -119,14 +120,15 @@ function answerSelected(num){
         canClick = false;
         var answeredCorrectly = num == correctAnswerIndex;
         var questionsLeft = questions[level].length;
-        console.log('answeredCorrectly = ' + answeredCorrectly);
         
         if (answeredCorrectly) {
+            answeredCorrectly = true;
             questionsCorrect += 1;
         } else {
             questionsWrong +=1;
         }
         questionsTotal += 1;
+        console.log('answeredCorrectly = ' + answeredCorrectly);
         
         //var theoreticalPositivePercentage = questionsCorrect / (questionsLeft + questionsTotal);
         //var theoreticalNegativePercentage = (questionsCorrect + questionsLeft) / (questionsLeft + questionsTotal);
@@ -164,7 +166,7 @@ function saveResultsToLocalStorage() {
     var testResults = {
         firstName: name,
         lastName: lastName,
-        level: level,
+        part: (level + 1),
         questionsCorrect: questionsCorrect,
         questionsWrong: questionsWrong,
         questionsTotal: questionsTotal,
@@ -184,12 +186,14 @@ function nextLevel(){
     saveResultsToLocalStorage();
 
     // Next Level and reset the questionsCorrect/Wrong/Total.
+    var isLastTest = (level + 1) === totalLevels;
+    animateCongrats(isLastTest);
+
     level++;
     questionCount = 0;
     questionsCorrect = 0;
     questionsWrong = 0;
     questionsTotal = 0;
-    animateCongrats();
 }
 
 function animateNextQuestion(){
@@ -215,28 +219,46 @@ function animateFinished(){
     saveResultsToLocalStorage();
 
     canClick = false;
-    document.getElementById("popup").style.pointerEvents = "auto";
+    elem("popup").style.pointerEvents = "auto";
     elem("popup").style.visibility = "visible";
     elem("popup").style.opacity = "1";
-    elem("popupContents").innerHTML = "Congrats, " + name + "! You've finished the placement test. <br><br> You were placed in <span style='font-weight: bold'> Grade " + (level + 1) + " </span>."; 
+
+    var percentage = ((getCurrentPercentage() * 100) + '%');
+    var popupText = 'You scored ' + questionsCorrect + ' / ' + questionsTotal + ' (' + percentage + ') on <span style="font-weight: bold">Part ' + (level + 1) + ' </span>of the test.<br><br>Thank you for taking the test. Please raise your hand and let Sơ know.';
+    elem("popupContents").innerHTML = popupText;
+    // elem("popupContents").innerHTML = "Congrats, " + name + "! You've finished the placement test. <br><br> You were placed in <span style='font-weight: bold'> Grade " + (level + 1) + " </span>."; 
 }
 
-function animateCongrats(){
+function animateCongrats(isLastTest) {
+    var percentage = ((getCurrentPercentage() * 100) + '%');
+
+    if (isLastTest === true) {        
+        var popupText = 'You scored ' + questionsCorrect + ' / ' + questionsTotal + ' (' + percentage + ') on <span style="font-weight: bold">Part ' + (level + 1) + ' </span>of the test.<br><br>Thank you for taking the test. Please raise your hand and let Sơ know.';
+        elem("popupContents").innerHTML = popupText;
+    } else {
+        var popupText = 'You scored ' + questionsCorrect + ' / ' + questionsTotal + ' (' + percentage + ') on <span style="font-weight: bold">Part ' + (level + 1) + ' </span>of the test.<br><br>Great job! <span style="font-weight: bold">Let’s move on to the next part of the test.</span>';
+        elem("popupContents").innerHTML = popupText;
+    }
+
     canClick = false;
     elem("popup").style.pointerEvents = "auto";
     elem("popup").style.visibility = "visible";
     elem("popup").style.opacity = "1";
+
+    if (isLastTest === true) {
+        return;
+    }
     
     window.setTimeout(function(){
         elem("popup").style.opacity = "0";
         document.getElementById("popup").style.pointerEvents = "none";
         elem("levelDisplay").innerHTML = "Grade " + (level + 1);
-    }, 2000);
+    }, 7500);
     window.setTimeout(function(){
         elem("popup").style.visibility = "hidden";
         canClick = true;
         animateNextQuestion();
-    }, 2500);
+    }, 8000);
 }
 
 function getCurrentPercentage(){
