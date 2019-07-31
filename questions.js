@@ -103,7 +103,7 @@ var QUESTIONS =
       [
          "Hình này bắt đầu bằng chữ gì? (Name the beginning sound of the word that describes the picture.)",
          "n",
-         "m",
+         "v",
          "l",
          "c",
          "",
