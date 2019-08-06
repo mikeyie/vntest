@@ -67,13 +67,11 @@ function startClicked(){
                 localStorage.testResults = '[]';
             }
             var testResultsJSON = JSON.parse(localStorage.testResults);
-            console.log(testResultsJSON);
             var innerHtml = "<table id='resultsTable'>";
             var length = testResultsJSON.length;
             var index = 0;
             for (index = 0; index < length; index++) {
                 var results = testResultsJSON[index];
-                console.log(results);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">First:</span> $firstName$&nbsp;&nbsp;&nbsp;<span class="boldSpan">Last Name:</span> $lastName$</td></tr>'.replace('$firstName$', results.firstName).replace('$lastName$', results.lastName);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">Date/Time:</span> $dateTimeStamp$</td></tr>'.replace('$dateTimeStamp$', results.dateTimeStamp);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">Part:</span> <span class="orangefont">$part$</span></td></tr>'.replace('$part$', results.part);
@@ -114,9 +112,11 @@ function nextQuestion(){
     //var randomIndex = getRandomInt(0, currentQuestionArray.length - 1);
     var randomIndex = 0;
     var currentQuestion = currentQuestionArray[randomIndex];
+    var nextQuestion = currentQuestionArray[randomIndex + 1];
     currentQuestionArray.splice(randomIndex, 1);
     
     var answers = currentQuestion.slice(1,5);
+    var nextAnswers = nextQuestion ? nextQuestion.slice(1,5) : null;
     var order = [0, 1, 2, 3];
     order = shuffle(order);
     
@@ -131,6 +131,10 @@ function nextQuestion(){
     if(currentQuestion[6]){
         elem("image").style.height = "40vh";
         elem("image").src = "./images/" + currentQuestion[6];
+        if (nextQuestion) {
+            // Preload the next question image...
+            elem("imagePreload1").src = "./images/" + nextQuestion[6];
+        }
     }
         
     if(!currentQuestion[5] && !currentQuestion[6]){
@@ -145,6 +149,14 @@ function nextQuestion(){
     
     for(var i = 0; i < 4; i++){
         buttons[order[i]].innerHTML = parse(answers[i]);
+        // Preload the next answers buttons images...
+        if (nextAnswers) {
+            var nextAnswer = nextAnswers[i];
+            var imagePath = nextAnswer.replace(/\[\[(.*)\]\]/g, './images/$1')
+            if (imagePath.indexOf("Level") >= 0) {
+                elem("imagePreload" + (i+2)).src = imagePath;
+            }
+        }
     }
 }
 
