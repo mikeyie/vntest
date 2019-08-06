@@ -237,6 +237,12 @@ button:focus {
     background: rgba(255,255,255,0.6)
 }
 
+.localStorageResults {
+}
+
+.testView {
+}
+
 .grey_start {
     font-size: 30px;
     cursor: default;
@@ -284,4 +290,13 @@ input {
 }
 .answers td:hover .inserted_image{
     filter: brightness(100%);
+}
+
+.boldSpan {
+    font-weight: bold;
+}
+
+.orangefont {
+    color: orange;
+    font-weight: bolder;
 }

@@ -58,11 +58,44 @@ function startClicked(){
     if(canStart == true){
         name = elem('firstName').value;
         lastName = elem('lastName').value;
-        elem("landing").style.opacity = "0";
-        elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " " + lastName;
-        window.setTimeout(function() {
-          document.getElementById("landing").style.pointerEvents = "none";
-        }, 400)
+        if (btoa(name) === 'bGFzYW5hZG1pbg==' && btoa(lastName) === 'Z2llc3U=') {
+            elem('landing').style.opacity = "0";
+            elem('testView').style.display = "none";
+            elem('rootHtml').style.background = "lightyellow";
+
+            if (!localStorage.testResults) {
+                localStorage.testResults = '[]';
+            }
+            var testResultsJSON = JSON.parse(localStorage.testResults);
+            console.log(testResultsJSON);
+            var innerHtml = "<table id='resultsTable'>";
+            var length = testResultsJSON.length;
+            var index = 0;
+            for (index = 0; index < length; index++) {
+                var results = testResultsJSON[index];
+                console.log(results);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">First:</span> $firstName$&nbsp;&nbsp;&nbsp;<span class="boldSpan">Last Name:</span> $lastName$</td></tr>'.replace('$firstName$', results.firstName).replace('$lastName$', results.lastName);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Date/Time:</span> $dateTimeStamp$</td></tr>'.replace('$dateTimeStamp$', results.dateTimeStamp);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Part:</span> <span class="orangefont">$part$</span></td></tr>'.replace('$part$', results.part);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Passed:</span> <span class="orangefont">$passed$</span></td></tr>'.replace('$passed$', results.passed);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Percentage:</span> $percentage$</td></tr>'.replace('$percentage$', results.percentage);
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Questions Correct:</span> $questionsCorrect$&nbsp;&nbsp;&nbsp;<span class="boldSpan">Questions Wrong:</span> $questionsWrong$&nbsp;&nbsp;&nbsp;<span class="boldSpan">Questions Total:</span> $questionsTotal$</td></tr>'.replace('$questionsCorrect$', results.questionsCorrect).replace('$questionsWrong$', results.questionsWrong).replace('$questionsTotal$', results.questionsTotal)
+                innerHtml += '<tr><td width=90%><span class="boldSpan">--------------------------------------------------------------------------------------------------</span></td></tr>'
+            }
+            elem('localStorageResults').innerHTML = innerHtml + "</table>";
+
+            window.setTimeout(function() {
+              document.getElementById("landing").style.pointerEvents = "none";
+            }, 400)
+
+        } else {
+            elem("landing").style.opacity = "0";
+            elem('localStorageResults').style.display = "none";
+            elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " " + lastName;
+            window.setTimeout(function() {
+              document.getElementById("landing").style.pointerEvents = "none";
+            }, 400)
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="rootHtml">
     <head>
         <title>Test</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -25,35 +25,39 @@
                 <span class="grey_start" id="startButton">Start</span>
             </div>
         </div>
+        <div id="localStorageResults">
+        </div>
         <div id="popup">
             <div id="popupContents">Great job! Let’s move on to the next part of the test.</div>
         </div>
         
-        <div class="info_bar">
-            <div class="name" id="label"><b>&#9733;VN Star Test</b> | Hung-Tam Yie</div>
-            <div class="time" id="time">1:00</div>
-        </div>
-        <div class="level_bar" id="levelDisplay">Grade 1</div>
-        
-        <div class="column_left">
-            <div class="question_number" id="questionNumber">Question #1</div>
-            <div class="question_text" id="question">
+        <div id="testView">
+            <div class="info_bar">
+                <div class="name" id="label"><b>&#9733;VN Star Test</b> | Hung-Tam Yie</div>
+                <div class="time" id="time">1:00</div>
             </div>
-            <table class="answers">
-                <tr>
-                    <td id="answer0"></td>
-                    <td id="answer1"></td>
-                </tr>
-                <tr>
-                    <td id="answer2"></td>
-                    <td id="answer3"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="divider"></div>
-        <div class="column_right" id="rightBar">
-            <img id="image" class="image" ></img>
-            <div class="additional_text" id="additionalText"></div>
+            <div class="level_bar" id="levelDisplay">Grade 1</div>
+            
+            <div class="column_left">
+                <div class="question_number" id="questionNumber">Question #1</div>
+                <div class="question_text" id="question">
+                </div>
+                <table class="answers">
+                    <tr>
+                        <td id="answer0"></td>
+                        <td id="answer1"></td>
+                    </tr>
+                    <tr>
+                        <td id="answer2"></td>
+                        <td id="answer3"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="divider"></div>
+            <div class="column_right" id="rightBar">
+                <img id="image" class="image" ></img>
+                <div class="additional_text" id="additionalText"></div>
+            </div>
         </div>
         <script src="script.js"></script>
         <script src="questions.js"></script>
