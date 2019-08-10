@@ -307,7 +307,7 @@ function animateCongrats(isLastTest) {
 }
 
 function getCurrentPercentage(){
-    return questionsCorrect/questionsTotal;
+    return Math.round((questionsCorrect/questionsTotal * 100)) / 100;
 }
 
 function elem(e){
