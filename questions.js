@@ -35,7 +35,7 @@ var QUESTIONS =
          "l",
          "h",
          "",
-         "Level1/grass.png"
+         "Level1/grass.jpg"
       ],
       [
          "Hình này bắt đầu bằng chữ gì? (Name the beginning sound of the word that describes the picture.)",
@@ -149,7 +149,7 @@ var QUESTIONS =
          "Chọn hình có vần e (Select the word that has the e sound)",
          "[[Level1/mother.jpg]]",
          "[[Level1/tomato.jpg]]",
-         "[[Level1/glass.png]]",
+         "[[Level1/glass.jpg]]",
          "[[Level1/grapes.jpg]]",
          "",
          ""
@@ -165,8 +165,8 @@ var QUESTIONS =
       ],
       [
          "Chọn hình có vần o (Select the word that has the o sound)",
-         "[[Level1/grass.png]]",
-         "[[Level1/bread.png]]",
+         "[[Level1/grass.jpg]]",
+         "[[Level1/bread.jpg]]",
          "[[Level1/papaya.jpg]]",
          "[[Level1/fall.jpg]]",
          "",
