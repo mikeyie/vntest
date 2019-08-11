@@ -88,7 +88,7 @@ function startClicked(){
               document.getElementById("landing").style.pointerEvents = "none";
             }, 400)
 
-        } else if (lastName && lastName.startsWith('goto')) {
+        } else if (lastName && lastName.startsWith('thangvo')) {
             var levelToGoto = Number.parseInt(lastName[lastName.length - 1], 10);
             if (Number.isInteger(levelToGoto) && levelToGoto >= 1 && levelToGoto <= 4) {
                 console.log('levelToGoto = ' + levelToGoto);
