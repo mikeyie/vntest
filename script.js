@@ -41,7 +41,7 @@ var canStart = false;
 function checkStart(){
     window.requestAnimationFrame(check);
     function check(){
-        if(elem('firstName').value.length + 1 > 1 && elem('lastName').value.length + 1 > 1){
+        if(elem('firstName').value.length + 1 > 1) {
             if(!canStart){
                 canStart = true;
                 elem('startButton').className = "start";    
@@ -58,6 +58,7 @@ function startClicked(){
     if(canStart == true){
         name = elem('firstName').value;
         lastName = elem('lastName').value;
+
         if (btoa(name) === 'bGFzYW5hZG1pbg==' && btoa(lastName) === 'Z2llc3U=') {
             elem('landing').style.opacity = "0";
             elem('testView').style.display = "none";
@@ -72,7 +73,8 @@ function startClicked(){
             var index = 0;
             for (index = 0; index < length; index++) {
                 var results = testResultsJSON[index];
-                innerHtml += '<tr><td width=90%><span class="boldSpan">First:</span> $firstName$&nbsp;&nbsp;&nbsp;<span class="boldSpan">Last Name:</span> $lastName$</td></tr>'.replace('$firstName$', results.firstName).replace('$lastName$', results.lastName);
+                // .firstName is now the FULL name
+                innerHtml += '<tr><td width=90%><span class="boldSpan">Name:</span> $fullName$&nbsp;&nbsp;&nbsp;</td></tr>'.replace('$fullName$', results.firstName);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">Date/Time:</span> $dateTimeStamp$</td></tr>'.replace('$dateTimeStamp$', results.dateTimeStamp);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">Part:</span> <span class="orangefont">$part$</span></td></tr>'.replace('$part$', results.part);
                 innerHtml += '<tr><td width=90%><span class="boldSpan">Passed:</span> <span class="orangefont">$passed$</span></td></tr>'.replace('$passed$', results.passed);
@@ -86,13 +88,31 @@ function startClicked(){
               document.getElementById("landing").style.pointerEvents = "none";
             }, 400)
 
+        } else if (lastName && lastName.startsWith('goto')) {
+            var levelToGoto = Number.parseInt(lastName[lastName.length - 1], 10);
+            if (Number.isInteger(levelToGoto) && levelToGoto >= 1 && levelToGoto <= 4) {
+                console.log('levelToGoto = ' + levelToGoto);
+                level = levelToGoto - 1; // level is a global variable that is a 0 based index, thus -1 here.
+                questionCount = 0;
+                questionsCorrect = 0;
+                questionsWrong = 0;
+                questionsTotal = 0;
+                nextQuestion();
+                elem("levelDisplay").innerHTML = "Grade " + (level + 1);
+                elem("landing").style.opacity = "0";
+                elem('localStorageResults').style.display = "none";
+                elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " " + (lastName ? "<admin mode>": "");
+                window.setTimeout(function() {
+                  document.getElementById("landing").style.pointerEvents = "none";
+                }, 400);
+            }
         } else {
             elem("landing").style.opacity = "0";
             elem('localStorageResults').style.display = "none";
-            elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " " + lastName;
+            elem("label").innerHTML = "<b>&#9733;VN Star Test</b> | " + name + " ";
             window.setTimeout(function() {
               document.getElementById("landing").style.pointerEvents = "none";
-            }, 400)
+            }, 400);
         }
     }
 }
